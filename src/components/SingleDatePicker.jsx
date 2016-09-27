@@ -43,7 +43,7 @@ const defaultProps = {
   onNextMonthClick() {},
 
   // i18n
-  displayFormat: moment.localeData().longDateFormat('L'),
+  displayFormat: () => moment.localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   phrases: {
     closeDatePicker: 'Close',
@@ -68,7 +68,8 @@ export default class SingleDatePicker extends React.Component {
 
   onChange(dateString) {
     const { displayFormat, isOutsideRange, onDateChange, onFocusChange } = this.props;
-    const date = toMomentObject(dateString, displayFormat);
+    const formatString = typeof displayFormat === 'function' ? displayFormat() : displayFormat;
+    const date = toMomentObject(dateString, formatString);
 
     const isValid = date && !isOutsideRange(date);
     if (isValid) {
@@ -114,8 +115,9 @@ export default class SingleDatePicker extends React.Component {
 
   getDateString(date) {
     const { displayFormat } = this.props;
-    if (date && displayFormat) {
-      return date && date.format(displayFormat);
+    const formatString = typeof displayFormat === 'function' ? displayFormat() : displayFormat;
+    if (date && formatString) {
+      return date && date.format(formatString);
     }
     return toLocalizedDateString(date);
   }
