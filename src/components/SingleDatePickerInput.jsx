@@ -43,20 +43,13 @@ export default function SingleDatePickerInput(props) {
   } = props;
 
   return (
-    <div className="SingleDatePickerInput">
-      <DateInput
-        id={id}
-        placeholder={placeholder} // also used as label
-        dateValue={dateValue}
-        focused={focused}
-        disabled={disabled}
-
-        onChange={onChange}
-        onFocus={onFocus}
-        onKeyDownShiftTab={onKeyDownShiftTab}
-        onKeyDownTab={onKeyDownTab}
-      />
+    <div class="button__wrapper Dropdown">
+    <div class="button button_theme_link">
+        <div class="button__label">{dateValue}</div>
+        <div class="button__icon button__icon_arrow"><i class="icon icon_type_arrow-down"></i></div>
     </div>
+</div>
+
   );
 }
 
