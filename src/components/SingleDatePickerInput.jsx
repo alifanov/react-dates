@@ -43,7 +43,7 @@ export default function SingleDatePickerInput(props) {
   } = props;
 
   return (
-    <div class="button__wrapper Dropdown">
+    <div class="button__wrapper Dropdown" id={id}>
     <div class="button button_theme_link">
         <div class="button__label">{dateValue}</div>
         <div class="button__icon button__icon_arrow"><i class="icon icon_type_arrow-down"></i></div>
